@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="image\lo.png">
+  <style>
+  .zoom-img {
+    width: 250px;  
+    transition: transform 0.3s ease; /* smooth zoom animation */
+    border-radius: 12px; /* optional rounded corners */
+  }
+
+  .zoom-img:hover {
+    transform: scale(1.2); /* zoom in 20% */
+  }
+</style>
+
+<style>
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;   /* space between cards */
+  }
+
+  .card {
+    background: #fff7f0;           
+    border-radius: 12px;           
+    padding: 20px;                 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+  }
+</style>
+
+
+  <title>Vishwas Sport Academy (VSA) — Karate & Fitness PCMC</title>
+  <meta name="description" content="Vishwas Sport Academy (VSA) — Since 2012. 30+ karate branches across PCMC. Kids & Adults programs, Self-Defence, Competitions, Fitness.">
+  <meta name="theme-color" content="#e11d48" />
+  <style>
+    :root{
+  --brand:#ff6600;      /* bright karate orange */
+  --brand-dark:#cc5200; /* darker orange for gradients */
+  --ink:#111111;        /* black text */
+  --muted:#6b6b6b;      /* subtle gray */
+  --bg:#ffffff;         /* white background */
+  --bg-alt:#000000;     /* black for dark sections */
+  --card:#fff8f2;       /* very light orange-tinted background */
+  --ok:#ff6600;         /* use orange as accent (instead of green) */
+  --warn:#ffcc00;       /* golden yellow for warnings */
+  --shadow: 0 10px 25px rgba(0,0,0,.15);
+  --radius: 18px;
+}
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--brand);text-decoration:none}
+    img{max-width:100%;display:block}
+    /* Header */
+    .header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid #e5e7eb}
+    .nav{max-width:1200px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:10px 16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand .logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-dark));display:grid;place-items:center;color:white;font-weight:900;box-shadow:var(--shadow)}
+    .brand .name{display:flex;flex-direction:column}
+    .brand .name small{color:var(--muted);font-weight:600;margin-top:-4px}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{font-weight:600;color:#111827}
+    .cta{padding:10px 16px;background:var(--brand);color:white;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+    /* Mobile menu */
+    .burger{display:none;background:transparent;border:none}
+    .burger span{display:block;width:24px;height:3px;background:#111827;margin:5px 0;border-radius:2px}
+    @media (max-width: 900px){
+      .menu{display:none}
+      .burger{display:block}
+      .mobile{display:none;position:fixed;top:64px;left:0;right:0;background:white;border-bottom:1px solid #e5e7eb}
+      .mobile a{display:block;padding:14px 16px;border-top:1px solid #f1f5f9;color:#111827}
+    }
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden;background:linear-gradient(120deg, #fff 0%, #fff 40%, #ffe4e6 100%)}
+    .hero-wrap{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding:48px 16px 24px}
+    .hero h1{font-size: clamp(32px, 5vw, 56px);line-height:1.1;margin:0}
+    .pill{display:inline-flex;gap:8px;align-items:center;background:var(--card);border:1px solid #e5e7eb;color:#0f172a;border-radius:999px;padding:6px 10px;font-weight:700}
+    .hero .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+    .point{background:var(--bg);border:1px solid #e5e7eb;border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px}
+    .point b{font-size:20px}
+    .ribbon{position:absolute;inset:auto -50px -70px -50px;height:200px;background:radial-gradient(60% 120% at 50% 30%, rgba(225,29,72,.18), rgba(190,18,60,.08) 60%, transparent 70%)}
+    @media (max-width: 900px){
+      .hero-wrap{grid-template-columns:1fr}
+      .hero .points{grid-template-columns:1fr 1fr}
+    }
+
+    /* Sections */
+    section{padding:52px 16px}
+    .container{max-width:1200px;margin:auto}
+    .section-title{font-size: clamp(22px, 3.8vw, 36px);margin:0 0 10px;font-weight:900}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    @media (max-width: 900px){
+      .grid-4{grid-template-columns:1fr 1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;color:#0f172a;font-weight:700}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:10px;background:#f1f5f9;color:#0f172a;font-weight:700}
+
+    /* Programs */
+    .program{display:flex;gap:12px}
+    .program-icon{flex:0 0 44px;height:44px;border-radius:12px;background:linear-gradient(180deg,var(--brand),var(--brand-dark));display:grid;place-items:center;color:white;font-weight:900}
+
+    /* Branches */
+    .branch{display:flex;gap:12px;align-items:flex-start}
+    .branch .dot{flex:0 0 10px;height:10px;margin-top:8px;border-radius:50%;background:var(--ok)}
+
+    /* CTA band */
+    .band{background:linear-gradient(120deg, var(--bg-alt), #111827);color:white;border-radius:var(--radius);padding:22px;display:flex;gap:18px;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
+    .band a{color:#fff}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+    .gallery img{border-radius:14px;height:100%;object-fit:cover}
+    .gallery .tall{grid-row: span 2}
+    @media (max-width: 900px){
+      .gallery{grid-template-columns:1fr 1fr}
+      .gallery .tall{grid-row:auto}
+    }
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;background:white}
+    button{cursor:pointer}
+    .btn{padding:12px 16px;border:none;border-radius:12px;background:var(--brand);color:white;font-weight:800}
+    .btn:active{transform:translateY(1px)}
+
+    /* Footer */
+    footer{background:#0f172a;color:#e5e7eb;padding:36px 16px;margin-top:26px}
+    .foot{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+    .social{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;background:#111827;color:#e5e7eb;border:1px solid #1f2937;font-weight:700}
+    @media (max-width: 900px){.foot{grid-template-columns:1fr}}
+
+    /* Utility */
+    .hide{display:none}
+    .center{text-align:center}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">V</div>
+        <div class="name">
+          <span>Vishwas Sport Academy</span>
+          <small>Karate • Fitness • PCMC</small>
+        </div>
+      </div>
+      <div class="menu" id="menu">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#branches">Branches</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact" class="cta">Enroll Now</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+   <div class="mobile" id="mobile" style="display:flex; gap:30px;">
+  <a href="#about">About</a>
+  <a href="#programs">Programs</a>
+  <a href="#branches">Branches</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Enroll Now</a>
+</div>
+
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-wrap">
+      <div>
+        <span class="pill">🥋 Since 2012 • 30+ Branches in PCMC</span>
+        <h1>Vishwas Sport Academy (VSA)<br/>Karate • Self‑Defence • Fitness</h1>
+        <p class="muted">Train with certified coaches. Programs for kids, teens, and adults. Build strength, focus, and discipline—on and off the mat.</p>
+        <div class="hero-cta" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+          <a class="cta" href="#contact">Join a Free Trial</a>
+          <a class="tag" href="#programs">See Programs ↓</a>
+        </div>
+        <div class="points">
+          <div class="point"><span>✅</span><div><b>Certified</b><br><small class="muted">Experienced black‑belt coaches</small></div></div>
+          <div class="point"><span>🏆</span><div><b>Tournament Ready</b><br><small class="muted">State & national level prep</small></div></div>
+          <div class="point"><span>🛡️</span><div><b>Self‑Defence</b><br><small class="muted">Practical street‑smart skills</small></div></div>
+        </div>
+      </div>
+      <div>
+  <!-- Poster with your photo -->
+  <div style="aspect-ratio:4/5;border-radius:16px;overflow:hidden;position:relative;box-shadow:var(--shadow)">
+    <!-- Your photo here -->
+    <img src="image\img.jpg" alt="VSA Karate Academy" style="width:100%;height:100%;object-fit:cover;">
+
+    <!-- Overlay text -->
+    <div style="position:absolute;inset:0;display:grid;place-items:center;padding:18px;color:white;text-align:center;background:rgba(0,0,0,0.3)">
+      <div>
+        <div class="badge" style="justify-content:center;margin:auto;background:rgba(255,255,255,.08);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.2)">VSA • PCMC</div>
+        <h2 style="margin:12px 0 8px">Train Hard.<br>Stay Humble.</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ribbon" aria-hidden="true"></div>
+</section>
+
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About VSA</h2>
+      <p class="muted">Founded in <b>2012</b>, Vishwas Sport Academy (VSA) has grown to <b>30+ branches</b> across PCMC. Our mission is to make high‑quality karate and fitness training accessible and fun for everyone. From white belt to black belt, we coach discipline, respect, and confidence.</p>
+      <div class="grid grid-3" style="margin-top:14px">
+        <div class="card"><b>🥋 Traditional Karate</b><br><small class="muted">Kihon • Kata • Kumite with modern teaching methods</small></div>
+        <div class="card"><b>🧠 Life Skills</b><br><small class="muted">Focus, goal‑setting, leadership, and teamwork</small></div>
+        <div class="card"><b>👨‍👩‍👧 Family Friendly</b><br><small class="muted">Beginner‑friendly batches for kids & adults</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs">
+    <div class="container">
+      <h2 class="section-title">Programs</h2>
+      <div class="grid grid-3">
+        <div class="card program">
+          <div class="program-icon">K</div>
+          <div>
+            <b>Kids Karate (6–12)</b>
+            <p class="muted">Fun, safe introduction to karate basics, discipline and fitness.</p>
+          </div>
+        </div>
+        <div class="card program">
+          <div class="program-icon">T</div>
+          <div>
+            <b>Teens & Adults</b>
+            <p class="muted">Technical drills, sparring, conditioning & competition prep.</p>
+          </div>
+        </div>
+        <div class="card program">
+          <div class="program-icon">S</div>
+          <div>
+            <b>Self‑Defence</b>
+            <p class="muted">Practical, scenario‑based sessions for schools & corporates.</p>
+          </div>
+        </div>
+        <div class="card program">
+          <div class="program-icon">F</div>
+          <div>
+            <b>Fitness & Conditioning</b>
+            <p class="muted">Strength, agility, flexibility and injury‑free movement.</p>
+          </div>
+        </div>
+        <div class="card program">
+          <div class="program-icon">P</div>
+          <div>
+            <b>Personal Coaching</b>
+            <p class="muted">One‑to‑one sessions for belt exams & tournaments.</p>
+          </div>
+        </div>
+        <div class="card program">
+          <div class="program-icon">E</div>
+          <div>
+            <b>Events & Camps</b>
+            <p class="muted">Workshops, summer camps and demo sessions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="band" style="margin-top:18px">
+        <div>
+          <b>New Student Offer:</b><br>
+          Join this month and get <u>1 free trial class</u> + <u>free uniform fitting advice</u>.
+        </div>
+        <a class="cta" href="#contact">Book Trial →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Branches -->
+  <section id="branches">
+    <div class="container">
+      <h2 class="section-title">Branches in PCMC (30+)</h2>
+      <p class="muted">We operate multiple centers across PCMC for your convenience. Here are a few featured branches. Contact us for the full list.</p>
+      <div class="grid grid-3">
+        <div class="card branch"><div class="dot"></div><div><b>Chinchwad (Head Office)</b><br><small class="muted">Mon–Sat • 6am–10am, 5pm–9pm</small></div></div>
+        <div class="card branch"><div class="dot"></div><div><b>Pimpri</b><br><small class="muted">Kids & Adults batches</small></div></div>
+        <div class="card branch"><div class="dot"></div><div><b>Akurdi</b><br><small class="muted">Competition training</small></div></div>
+        <div class="card branch"><div class="dot"></div><div><b>Nigdi</b><br><small class="muted">Weekend batches</small></div></div>
+        <div class="card branch"><div class="dot"></div><div><b>Rahatani</b><br><small class="muted">Self‑defence specials</small></div></div>
+        <div class="card branch"><div class="dot"></div><div><b>Wakad</b><br><small class="muted">Beginner friendly</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule & Fees -->
+  <section id="schedule">
+    <div class="container">
+      <h2 class="section-title">Schedule & Fees</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <b>Regular Batches</b>
+          <ul>
+            <li>Evening: 5:00–6:00 • 6:00–7:00 • 7:00–8:00</li>
+            <li>Sun: Special workshops</li>
+          </ul>
+          <div class="muted">* Timings vary by branch. Final schedule will be shared after signup.</div>
+        </div>
+        <div class="card">
+          <b>Fees </b>
+          <ul>
+            <li>Monthly: ₹500 – ₹600 (branch‑wise)</li>
+            <li>Anually: ₹6,000 – ₹,7200</li>
+            <li>Private coaching: from ₹800 / session</li>
+          </ul>
+          <div class="muted">* Fees may vary. Discounts for siblings & annual plans.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Students Say</h2>
+      <div class="grid grid-3">
+        <div class="card">“Great atmosphere for kids. My son’s focus improved a lot!”<br><small class="muted">— Parent, Nigdi</small></div>
+        <div class="card">“Coaches push you to do better in a positive way. Loved it.”<br><small class="muted">— Student, Wakad</small></div>
+        <div class="card">“Professional setup. Perfect for tournament preparation.”<br><small class="muted">— Athlete, Pimpri</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+     <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    /* On hover image zooms */
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Optional: make tall class images span 2 rows */
+    .gallery img.tall {
+      grid-row: span 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery" aria-label="Photo gallery placeholders">
+
+    <!-- 🔴 Replace src with your image path/link -->
+    <img class="tall" alt="Gallery placeholder" 
+         src="image\vid2 (2).jpg" 
+         width="800" height="1000">
+
+    <!-- 🔴 Replace src with your image path/link -->
+    <img alt="Gallery placeholder" 
+         src="image\vid2 (1).jpg" 
+         width="600" height="480">
+
+    <!-- 🔴 Replace src with your image path/link -->
+    <img alt="Gallery placeholder" 
+         src="image\trop.jpg" 
+         width="600" height="480">
+
+  </div>
+
+  </section>
+
+  <!-- Videos Section -->
+<section id="videos" style="padding:60px 20px; background:#ffffff; color:#111; text-align:center;">
+  <h2 style="font-size:2rem; margin-bottom:20px; color:#ff6600;">Our Academy Videos</h2>
+  <p>Check out highlights, training clips, and our karate journey!</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px; max-width:1000px; margin:auto; margin-top:30px;">
+    
+    <!-- YouTube Video Embed -->
+    <div style="background:#fff8f2; padding:10px; border-radius:18px; box-shadow:0 10px 25px rgba(0,0,0,.15);">
+      <video width="100%" height="315" controls>
+        <source src="video\vsa.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div style="background:#fff8f2; padding:10px; border-radius:18px; box-shadow:0 10px 25px rgba(0,0,0,.15);">
+      <video width="100%" height="315" controls .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;   /* space between cards */
+}
+>
+        <source src="video\vid2 (1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+
+    <!-- Local MP4 Video Example -->
+    <div style="background:#fff8f2; padding:10px; border-radius:18px; box-shadow:0 10px 25px rgba(0,0,0,.15);">
+      <video width="100%" height="315" controls>
+        <source src="video\fina.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      
+<div style="text-align:center; margin:40px 0;">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvGYI7Qkk64MDjJXbfi8sAdLbCH1OMVHXliIy6hDdhpz04_Q/viewform?usp=sharing&ouid=118381307721052815420" target="_blank" style="
+    background-color: orange;
+    color: white;
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;">
+    Enroll Now
+  </a>
+</div>
+
+
+        <div class="card">
+          <b>Head Office</b><br>
+          <div class="muted">Chinchwad, PCMC • Mon–Sat 10am–7pm</div>
+         <div style="height:220px;overflow:hidden;border-radius:12px;border:1px solid #e5e7eb;margin-top:12px;display:grid;place-items:center;background:#f8fafc" aria-label="Map">
+  <iframe 
+    src=https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.5602997402043!2d73.80272647496712!3d18.68371708244172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b798f44dd2a3%3A0x24516a2353b0352!2sVishwa%20Sports%20Academy!5e0!3m2!1sen!2sin!4v1756551648588!5m2!1sen!2sin"
+    width="100%" 
+    height="220" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px" class="social">
+          <a class="chip" href="#">Call: +91‑7057061068</a>
+            <a class="chip" href="#">WhatsApp</a>
+            <a class="chip" href="https://www.instagram.com/vishwasports/">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="band" style="margin-top:18px">
+        <div><b>Franchise & School Programs</b><br><span class="muted">Want VSA at your society/school? Partner with us.</span></div>
+        <a class="cta" href="#contact">Enquire →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <div class="brand" style="color:#e5e7eb">
+          <div class="logo" aria-hidden="true">V</div>
+          <div class="name"><span>Vishwas Sport Acadmy</span><small>Since 2012 • PCMC</small></div>
+        </div>
+        <p class="muted" style="margin-top:6px">© <span id="year"></span> VSA. All rights reserved.</p>
+      </div>
+      <div>
+        <b>Quick Links</b>
+        <div><a href="#programs">Programs</a></div>
+        <div><a href="#branches">Branches</a></div>
+        <div><a href="#contact">Enroll</a></div>
+      </div>
+      <div>
+        <b>Policies</b>
+        <div><a href="#">Terms</a></div>
+        <div><a href="#">Privacy</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const burger = document.getElementById('burger');
+    const mobile = document.getElementById('mobile');
+    burger?.addEventListener('click', ()=>{
+      const open = mobile.style.display === 'block';
+      mobile.style.display = open ? 'none' : 'block';
+      burger.setAttribute('aria-expanded', String(!open));
+    });
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Simple form handler: opens mailto with prefilled body
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const age = document.getElementById('age').value;
+      const msg = document.getElementById('msg').value.trim();
+      const body = encodeURIComponent(
+        `New enquiry from VSA website%0D%0A`+
+        `Name: ${name}%0D%0A`+
+        `Phone: ${phone}%0D%0A`+
+        `Email: ${email}%0D%0A`+
+        `Category: ${age}%0D%0A`+
+        `Message: ${msg}`
+      );
+      const link = `mailto:info@vsapcmc.in?subject=VSA Enquiry — ${name}&body=${body}`;
+      document.getElementById('formMsg').textContent = 'Opening your email app…';
+      window.location.href = link;
+    }
+  </script>
+</body>
+</html>
